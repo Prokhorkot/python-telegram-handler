@@ -30,5 +30,5 @@ setup(
     license='MIT License',
     author='sashgorokhov',
     author_email='sashgorokhov@gmail.com',
-    description='A python logging handler that sends logs via Telegram Bot Api.',
+    description='FORK: A python logging handler that sends logs via Telegram Bot Api.',
 )

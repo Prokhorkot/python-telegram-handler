@@ -19,7 +19,7 @@ class TelegramHandler(logging.Handler):
     API_ENDPOINT = 'https://api.telegram.org'
     last_response = None
 
-    def __init__(self, token, chat_id=None, level=logging.NOTSET, timeout=2, disable_notification=False,
+    def __init__(self, token, chat_id=None, message_thread_id=None, level=logging.NOTSET, timeout=2, disable_notification=False,
                  disable_web_page_preview=False, proxies=None):
         self.token = token
         self.disable_web_page_preview = disable_web_page_preview
@@ -27,6 +27,7 @@ class TelegramHandler(logging.Handler):
         self.timeout = timeout
         self.proxies = proxies
         self.chat_id = chat_id or self.get_chat_id()
+        self.message_thread_id = message_thread_id
         if not self.chat_id:
             level = logging.NOTSET
             logger.error('Did not get chat id. Setting handler logging level to NOTSET.')
@@ -85,6 +86,7 @@ class TelegramHandler(logging.Handler):
 
         data = {
             'chat_id': self.chat_id,
+            'message_thread_id': self.message_thread_id,
             'disable_web_page_preview': self.disable_web_page_preview,
             'disable_notification': self.disable_notification,
         }
